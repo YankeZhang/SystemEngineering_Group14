@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Blood glucose
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    
+  <ion-item>
+      <ion-label floating>Bloodglucose</ion-label>
+      <ion-input [(ngModel)]="current"></ion-input>
+    </ion-item>
+    
+    <button ion-button block (click)="uploadglucose()">Upload</button>
+</ion-content>
