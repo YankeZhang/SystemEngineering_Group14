@@ -2,6 +2,7 @@ import { Component,ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireDatabase } from '@angular/fire/database';
 import { TabsPage } from '../tabs/tabs';
 
 /**
@@ -19,7 +20,7 @@ export class LoginPage {
 	currentUser = null;
   @ViewChild('username') uname;
   @ViewChild('password') password;
-  constructor(public fire:AngularFireAuth,public navCtrl: NavController,public alertCtrl: AlertController) {
+  constructor(public firedb:AngularFireDatabase,public fire:AngularFireAuth,public navCtrl: NavController,public alertCtrl: AlertController) {
 
   }
 
