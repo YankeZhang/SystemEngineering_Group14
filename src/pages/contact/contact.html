@@ -14,4 +14,15 @@
     </ion-item>
     
     <button ion-button block (click)="uploadglucose()">Upload</button>
+    <div style="display:block;">
+        <canvas baseChart
+        [data]='chartData'
+        [labels]='chartLabels'
+        [chartType]='chartType'
+        >
+    
+        </canvas>
+        </div>
+
+  
 </ion-content>
