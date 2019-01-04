@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
-declare var google;
+
 
 @Component({
   selector: 'page-contact',
@@ -43,7 +43,7 @@ export class ContactPage {
         }
         else
         {
-          this.chartLabels=_data;
+          this.chartData=_data;
         }
       }
     )

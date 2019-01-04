@@ -6,7 +6,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
-import { AboutPage } from '../pages/about/about';
+import { BloodpressurePage } from '../pages/bloodpressure/bloodpressure';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -33,7 +33,7 @@ const firebase = {
     MyApp,
     LoginPage,
     BluetoothPage,
-    AboutPage,
+    BloodpressurePage,
     ContactPage,
     HomePage,
     TabsPage
@@ -53,7 +53,7 @@ const firebase = {
     MyApp,
     LoginPage,
     BluetoothPage,
-    AboutPage,
+    BloodpressurePage,
     ContactPage,
     HomePage,
     TabsPage

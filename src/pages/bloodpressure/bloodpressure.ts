@@ -2,15 +2,13 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { database } from 'firebase';
 
-declare var google;
 
 @Component({
-  selector: 'page-about',
-  templateUrl: 'about.html'
+  selector: 'page-bloodpressure',
+  templateUrl: 'bloodpressure.html'
 })
-export class AboutPage {
+export class BloodpressurePage {
 
   currentUser;
   current: number=null;
@@ -18,6 +16,7 @@ export class AboutPage {
   chartLabels=[];
   chartData=[];
   chartType:string = 'line';
+  datalist;
 
   constructor(public navCtrl: NavController, public firedb: AngularFireDatabase,public fire: AngularFireAuth) {
     this.initializeDatabase();
@@ -44,11 +43,12 @@ export class AboutPage {
       {
         var i=_data.length;        
         if(i>=7){
-          this.chartData=[_data[i-7],_data[i-6],_data[i-5],_data[i-4],_data[i-3],_data[i-2],_data[i-1]];
+          this.datalist = [_data[i-7],_data[i-6],_data[i-5],_data[i-4],_data[i-3],_data[i-2],_data[i-1]];
+          this.chartData=this.datalist;
         }
         else
         {
-          this.chartLabels=_data;
+          this.chartData=_data;
         }
       }
     )
