@@ -13,10 +13,16 @@ export class HomePage {
 
   }
 
+  isRound: boolean = true;
+  isFull: boolean = true;
+
+  text: string = "Last Recorded time: "+ "19";
+
   signOut()
   {
     const root = this.app.getRootNav();
     this.fire.auth.signOut;
     root.popToRoot();
   }
+
 }
