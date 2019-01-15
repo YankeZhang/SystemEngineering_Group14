@@ -15,6 +15,8 @@ export class BluetoothPage {
     private ngZone: NgZone) {
 
   }
+
+
   ionViewDidEnter() {
     console.log('ionViewDidEnter');
     this.scan();
