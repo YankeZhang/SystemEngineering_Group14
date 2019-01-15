@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Testability } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { App } from 'ionic-angular';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -8,7 +8,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
   templateUrl: 'home.html'
 })
 export class HomePage {
-
+  test: Testability;
   constructor(private fire:AngularFireAuth,public navCtrl: NavController,public app: App) {
 
   }
