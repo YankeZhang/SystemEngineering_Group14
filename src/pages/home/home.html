@@ -9,7 +9,14 @@
           </button>
         </ion-buttons>
     </ion-navbar>
+
   </ion-header>
 <ion-content padding>
-  
+    <ion-toolbar>
+        <ion-title>Welcome!</ion-title>
+      </ion-toolbar>
+
+      <button ion-fab id="last">Last measurement</button>
+
+      <button ion-button [full]="isFull" [round]="isRound" id="contact">Contact Doctor</button>
 </ion-content>
