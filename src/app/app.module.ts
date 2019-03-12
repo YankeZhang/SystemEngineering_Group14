@@ -10,6 +10,8 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { ReminderPage } from '../pages/reminder/reminder';
+import { DetailPage}  from '../pages/detail/detail'
 
 import { ChartsModule } from 'ng2-charts'
 
@@ -18,6 +20,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { BluetoothPage } from '../pages/bluetooth/bluetooth';
 import { LoginPage } from '../pages/login/login';
 import { BLE } from '@ionic-native/ble';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 const firebase = {
     apiKey: "AIzaSyAfe-IA_oEU-dxBj1nv2cx1Rvokso3wWak",
@@ -36,7 +39,10 @@ const firebase = {
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    DetailPage,
+
+    ReminderPage
     
   ],
   imports: [
@@ -52,17 +58,20 @@ const firebase = {
   entryComponents: [
     MyApp,
     LoginPage,
+    ReminderPage,
     BluetoothPage,
     AboutPage,
     ContactPage,
     HomePage,
+    DetailPage,
     TabsPage
   ],
   providers: [
     BLE,
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    LocalNotifications
   ]
 })
 export class AppModule {}

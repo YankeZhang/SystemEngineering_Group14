@@ -2,6 +2,9 @@ import { Component, NgZone } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { BLE } from '@ionic-native/ble';
+import { DetailPage } from '../detail/detail';
+
+
 @Component({
   selector: 'page-bluetooth',
   templateUrl: 'bluetooth.html'
@@ -15,6 +18,8 @@ export class BluetoothPage {
     private ngZone: NgZone) {
 
   }
+
+
   ionViewDidEnter() {
     console.log('ionViewDidEnter');
     this.scan();
@@ -28,9 +33,10 @@ export class BluetoothPage {
       device => this.onDeviceDiscovered(device), 
       error => this.scanError(error)
     );
-
+    
     setTimeout(this.setStatus.bind(this), 5000, 'Scan complete');
   }
+
 
   onDeviceDiscovered(device) {
     console.log('Discovered ' + JSON.stringify(device, null, 2));
@@ -57,5 +63,10 @@ export class BluetoothPage {
     });
   }
 
-
+  deviceSelected(device) {
+    console.log(JSON.stringify(device) + ' selected');
+    this.navCtrl.push(DetailPage, {
+      device: device
+    });
+  }
 }

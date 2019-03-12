@@ -19,6 +19,18 @@ export class AboutPage {
   chartData=[];
   chartType:string = 'line';
 
+  chartOptions: {
+    scales: {
+      yAxes: [{
+          ticks: {
+              max: 106,
+              min: 94,
+              stepSize: 1
+          }
+      }]
+    }
+  }
+
   constructor(public navCtrl: NavController, public firedb: AngularFireDatabase,public fire: AngularFireAuth) {
     this.initializeDatabase();
     this.currentUser=this.fire.auth.currentUser.displayName;
