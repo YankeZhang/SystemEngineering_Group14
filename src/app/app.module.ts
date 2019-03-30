@@ -21,6 +21,7 @@ import { BluetoothPage } from '../pages/bluetooth/bluetooth';
 import { LoginPage } from '../pages/login/login';
 import { BLE } from '@ionic-native/ble';
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import { BluetoothLE } from '@ionic-native/bluetooth-le/ngx';
 
 const firebase = {
     apiKey: "AIzaSyAfe-IA_oEU-dxBj1nv2cx1Rvokso3wWak",
@@ -52,7 +53,6 @@ const firebase = {
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     ChartsModule
-
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -71,7 +71,8 @@ const firebase = {
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    LocalNotifications
+    LocalNotifications,
+    BluetoothLE
   ]
 })
 export class AppModule {}

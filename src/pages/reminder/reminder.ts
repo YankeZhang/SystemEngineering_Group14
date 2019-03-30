@@ -27,13 +27,14 @@ export class ReminderPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ReminderPage');
+    console.log('ionViewDdLoad ReminderPage');
   }
 
   goToHomePage() {
-    this.navCtrl.push(TabsPage);
+   
     this.presentToast();
     this.setNotice();
+    this.navCtrl.pop();
   }
 
   async presentToast() {
@@ -58,5 +59,7 @@ export class ReminderPage {
       ],
       trigger: {at: this.myDate}
     });
+   
   }
+ 
 }

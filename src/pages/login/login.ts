@@ -4,7 +4,7 @@ import { AlertController } from 'ionic-angular';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { TabsPage } from '../tabs/tabs';
-
+import { BLE } from '@ionic-native/ble';
 /**
  * Generated class for the LoginPage page.
  *
@@ -20,8 +20,11 @@ export class LoginPage {
 	currentUser = null;
   @ViewChild('username') uname;
   @ViewChild('password') password;
-  constructor(public firedb:AngularFireDatabase,public fire:AngularFireAuth,public navCtrl: NavController,public alertCtrl: AlertController) {
-
+  constructor(public ble: BLE, public firedb:AngularFireDatabase,public fire:AngularFireAuth,public navCtrl: NavController,public alertCtrl: AlertController) {
+    if(!this.ble.isEnabled())
+    {
+      this.ble.enable();
+    }
   }
 
   signIn()

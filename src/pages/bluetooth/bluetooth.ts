@@ -1,9 +1,9 @@
 import { Component, NgZone } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, Platform } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { BLE } from '@ionic-native/ble';
 import { DetailPage } from '../detail/detail';
-
+import { BluetoothLE } from '@ionic-native/bluetooth-le/ngx';
 
 @Component({
   selector: 'page-bluetooth',
@@ -14,22 +14,25 @@ export class BluetoothPage {
   statusMessage: string;
   constructor(public navCtrl: NavController, 
     private toastCtrl: ToastController,
+    //private bluetoothle: BluetoothLE,
     private ble: BLE,
-    private ngZone: NgZone) {
-
+    private ngZone: NgZone,
+    public plt: Platform
+    ) {
   }
 
 
   ionViewDidEnter() {
     console.log('ionViewDidEnter');
     this.scan();
+
   }
 
   scan() {
     this.setStatus('Scanning for Bluetooth LE Devices');
     this.devices = [];  // clear list
 
-    this.ble.scan([], 5).subscribe(
+    this.ble.scan([],5).subscribe(
       device => this.onDeviceDiscovered(device), 
       error => this.scanError(error)
     );
@@ -41,6 +44,7 @@ export class BluetoothPage {
   onDeviceDiscovered(device) {
     console.log('Discovered ' + JSON.stringify(device, null, 2));
     this.ngZone.run(() => {
+      if(device.name!=null)
       this.devices.push(device);
     });
   }

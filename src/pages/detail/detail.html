@@ -26,15 +26,17 @@
       </ion-item>
     </ion-list>
   </ion-card>
-  <button ion-button block (click)="send()">Indicate</button>
+
   <ion-card>
       <ion-card-header>
         Data
       </ion-card-header>
       <ion-list>
-          <ion-item *ngFor="let data of this.datas">
-              
-            {{data}}
+          <ion-item>
+            {{ glucose }}
+          </ion-item>
+          <ion-item>
+            {{ recordTime }}
           </ion-item>
         </ion-list>
   </ion-card>
@@ -43,7 +45,7 @@
       Details
     </ion-card-header>
     <ion-card-content>
-      <pre>{{peripheral | json }}</pre>
+      <pre>{{ peripheral | json }}</pre>
     </ion-card-content>
   </ion-card>
 </ion-content>

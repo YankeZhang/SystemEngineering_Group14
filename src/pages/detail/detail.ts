@@ -9,13 +9,12 @@ import { BLE } from '@ionic-native/ble';
   templateUrl: 'detail.html',
 })
 export class DetailPage {
+  
   final;
-  intdata;
-  floatdata;
-  datas=[];
+  glucose: String;
   peripheral: any = {};
   statusMessage: string;
-
+  recordTime: string;
   constructor(public navCtrl: NavController, 
               public navParams: NavParams, 
               private ble: BLE,
@@ -27,67 +26,41 @@ export class DetailPage {
     let device = navParams.get('device');
 
     this.setStatus('Connecting to ' + device.name || device.id);
-
+    this.ble.autoConnect(device.id,this.onConnected.bind(this),this.onDeviceDisconnected.bind(this));
     this.ble.connect(device.id).subscribe(
       peripheral => this.onConnected(peripheral),
       peripheral => this.onDeviceDisconnected(peripheral)
     );
+    this.onConnected(this.peripheral);
   }
-
-  // onConnected(peripheral) {
-  //   this.ngZone.run(() => {
-  //     this.setStatus('');
-  //     this.peripheral = peripheral;
-  //   });
-
-  //   this.ble.read(this.peripheral.id,'180a','2a26').then(
-  //     buffer => {
-  //       let intData=new Uint8Array(buffer);
-  //       let floatData=new Float32Array(buffer);
-  //       this.ngZone.run(() => {
-  //         for(var n=0;n<intData.length;n++)
-  //         {
-  //           this.datas.push(intData[n])
-  //         }
-  //         this.floatdata=floatData[0];
-  //       })
-  //     }
-  //   )
-  // }
 
   onConnected(peripheral)
   {
     this.peripheral=peripheral;
     this.setStatus('Connected to ' + (peripheral.name || peripheral.id));
-    
-    this.ble.startNotification(this.peripheral.id, '1808', '2a18').subscribe(
+    this.ble.startNotification(this.peripheral.id, '1808', '2a18',).subscribe(
       data => this.onChange(data),
     )
+    this.send();
   }
 
   send() {
-    let buffer = new Uint8Array(2).buffer;
-    // buffer[0]=0x01;
-    // buffer[1]=0x01;
-    this.datas.push(0x0101);
-    this.ble.write(this.peripheral.id, '1808', '2a52', buffer).then(
-      () => this.setStatus('requiring access' + '0x0101')
+    let data = new Uint8Array(2);
+    data[0]=0x01;
+    data[1]=0x05;
+    this.ble.write(this.peripheral.id, "1808", '2a52', data.buffer).then(
+      () => this.setStatus('requiring access: ' + data.toString())
       //e => this.showAlert('Unexpected Error', 'Error updating dimmer characteristic ' + e)
     );
   }
 
   onChange(buffer:ArrayBuffer) {
     let intData=new Uint8Array(buffer);
-
     this.ngZone.run(() => {
-      for(var n=0;n<intData.length;n++)
-          {
-            this.datas.push(intData[n])
-          }
+      this.glucose=(intData[12]/18).toFixed(1).toString()+"mmol/l";
+      this.recordTime=intData[5].toString()+"/"+intData[6].toString()+" "+intData[7].toString()+":"+intData[8].toString();
     });
-
   }
-
 
   onDeviceDisconnected(peripheral) {
     let toast = this.toastCtrl.create({
@@ -97,8 +70,6 @@ export class DetailPage {
     });
     toast.present();
   }
-
-
 
   // Disconnect peripheral when leaving the page
   ionViewWillLeave() {

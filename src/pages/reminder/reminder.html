@@ -6,51 +6,52 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-      <ion-title>
-          Reminder
-        </ion-title>
-  <ion-buttons end>
-      <button ion-button color="dark" clear (click)="goToHomePage()">
-        Done
-        </button></ion-buttons>
-    
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
-    <ion-item-group>
-
-        <ion-item>
-            <ion-label>Date</ion-label>
-            <ion-datetime displayFormat="h:mm A" [(ngModel)]="myDate"></ion-datetime>
-          </ion-item>
-
-        <ion-item-divider color="light">Repeat</ion-item-divider>
-        <ion-list radio-group [(ngModel)]="repeat">
-              <ion-item>
-                <ion-label>Daily</ion-label>
-                <ion-radio value="daily" checked="true"></ion-radio>
-              </ion-item>
-            
-              <ion-item>
-                <ion-label>Once</ion-label>
-                <ion-radio value="once"></ion-radio>
-              </ion-item>
-            </ion-list>
-
-        <ion-item-divider color="light">Alert</ion-item-divider>
-        <ion-list radio-group [(ngModel)]="alert">
-              <ion-item>
-                <ion-label>Ringtone</ion-label>
-                <ion-radio value="ringtone" checked></ion-radio>
-              </ion-item>
-              <ion-item>
-                <ion-label>Vibration</ion-label>
-                <ion-radio value="vibration"></ion-radio>
-              </ion-item>
-            </ion-list>
-  </ion-item-group>
-</ion-content>
+    <ion-navbar>
+        <ion-title>
+            Reminder
+          </ion-title>
+    <ion-buttons end>
+        <button ion-button color="dark" clear (click)="goToHomePage()">
+          Done
+          </button></ion-buttons>
+      
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding>
+      <ion-item-group>
+  
+          <ion-item>
+              <ion-label>Date</ion-label>
+              <ion-datetime displayFormat="h:mm A" [(ngModel)]="myDate"></ion-datetime>
+            </ion-item>
+  
+          <ion-item-divider color="light">Repeat</ion-item-divider>
+          <ion-list radio-group [(ngModel)]="repeat">
+                <ion-item>
+                  <ion-label>Daily</ion-label>
+                  <ion-radio value="daily" checked="true"></ion-radio>
+                </ion-item>
+              
+                <ion-item>
+                  <ion-label>Once</ion-label>
+                  <ion-radio value="once"></ion-radio>
+                </ion-item>
+              </ion-list>
+  
+          <ion-item-divider color="light">Alert</ion-item-divider>
+          <ion-list radio-group [(ngModel)]="alert">
+                <ion-item>
+                  <ion-label>Ringtone</ion-label>
+                  <ion-radio value="ringtone" checked></ion-radio>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Vibration</ion-label>
+                  <ion-radio value="vibration"></ion-radio>
+                </ion-item>
+              </ion-list>
+    </ion-item-group>
+  </ion-content>
+  
