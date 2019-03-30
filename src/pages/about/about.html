@@ -6,23 +6,45 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
 
   <ion-item>
-    <ion-label floating>Bloodpressure</ion-label>
-    <ion-input [(ngModel)]="current"></ion-input>
+    <ion-label floating>Systolic</ion-label>
+    <ion-input [(ngModel)]="systolic"></ion-input>
   </ion-item>
+  <ion-item>
+      <ion-label floating>Diastolic</ion-label>
+      <ion-input [(ngModel)]="diastolic"></ion-input>
+    </ion-item>
 
   <button ion-button block (click)="uploadpressure()">Upload</button>
+  <ion-card>
+      <h2>Systolic</h2>
   <div style="display:block;">
     <canvas baseChart
-    [data]='chartData'
+    [data]="systolicData"
     [labels]='chartLabels'
+    [legend]='lineChartLegend'
     [chartType]='chartType'
+    [colors]="lineChartColors"
     [options]='chartOptions'
     >
-
-    </canvas>
+  </canvas>
     </div>
+  </ion-card>
+
+  <ion-card>
+    <h2>Diastolic</h2>
+      <div style="display:block;">
+        <canvas baseChart
+        [data]="diastolicData"
+        [labels]='chartLabels'
+        [legend]='lineChartLegend'
+        [chartType]='chartType'
+        [colors]="lineChartColors"
+        [options]='chartOptions'
+        >
+      </canvas>
+        </div>
+      </ion-card>
 </ion-content>
