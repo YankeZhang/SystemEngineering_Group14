@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { ChartDataSets, ChartOptions } from 'chart.js';
+import { Chart } from 'chart.js';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Color } from 'ng2-charts';
@@ -11,6 +11,7 @@ import { Color } from 'ng2-charts';
 })
 export class AboutPage {
 
+  
   currentUser;
   systolic:number=null;
   diastolic:number=null;

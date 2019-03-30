@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content padding>
-
+    
   <ion-item>
     <ion-label floating>Systolic</ion-label>
     <ion-input [(ngModel)]="systolic"></ion-input>
@@ -21,7 +21,7 @@
   <ion-card>
       <h2>Systolic</h2>
   <div style="display:block;">
-    <canvas baseChart
+    <canvas baseChart width="200" height="100"
     [data]="systolicData"
     [labels]='chartLabels'
     [legend]='lineChartLegend'
@@ -36,7 +36,7 @@
   <ion-card>
     <h2>Diastolic</h2>
       <div style="display:block;">
-        <canvas baseChart
+        <canvas baseChart width="300" height="100"
         [data]="diastolicData"
         [labels]='chartLabels'
         [legend]='lineChartLegend'
