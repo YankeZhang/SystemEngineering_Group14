@@ -12,7 +12,10 @@
       <ion-label floating>Bloodglucose</ion-label>
       <ion-input [(ngModel)]="current"></ion-input>
     </ion-item>
-    
+    <ion-item> 
+        <ion-label>{{ glucose }}</ion-label>
+        
+      </ion-item>
     <button ion-button block (click)="uploadglucose()">Upload</button>
     <div style="display:block;">
         <canvas baseChart
@@ -20,9 +23,6 @@
         [labels]='chartLabels'
         [chartType]='chartType'
         >
-    
         </canvas>
-        </div>
-
-  
+      </div>
 </ion-content>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Chart } from 'chart.js';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -11,7 +11,8 @@ import { Color } from 'ng2-charts';
 })
 export class AboutPage {
 
-  
+  @ViewChild('lineCanvas') lineCanvas;
+  valueLinesChart: any;
   currentUser;
   systolic:number=null;
   diastolic:number=null;
@@ -22,7 +23,10 @@ export class AboutPage {
   public lineChartLegend = false;
   chartType:string = 'line';
 
-  //public lineChartData = this.systolicData;
+  public lineChartData:Array<any> =[
+    {data:this.systolicData, label: 'Systolic'}
+  ];
+  
 
   public lineChartColors: Color[] = [
     { // red
@@ -50,9 +54,105 @@ export class AboutPage {
   }
 
   constructor(public navCtrl: NavController, public firedb: AngularFireDatabase,public fire: AngularFireAuth) {
-    this.initializeDatabase();
+    //this.initializeDatabase();
     this.currentUser=this.fire.auth.currentUser.displayName;
   }
+  
+  updateCharts(data) {
+    this.systolicData = data;
+    this.valueLinesChart.data.datasets.forEach((dataset) => {
+      dataset.data = this.systolicData;
+    });
+    this.valueLinesChart.update();
+  }
+
+  createCharts(data) {
+    this.systolicData = data;
+    this.valueLinesChart = new Chart(this.lineCanvas.nativeElement, {
+
+      type: 'line',
+      data: {
+          labels: this.chartLabels,
+          datasets: [
+              {
+                  label: "My First dataset",
+                  fill: false,
+                  lineTension: 0.1,
+                  backgroundColor: "rgba(75,192,192,0.4)",
+                  borderColor: "rgba(75,192,192,1)",
+                  borderCapStyle: 'butt',
+                  borderDash: [],
+                  borderDashOffset: 0.0,
+                  borderJoinStyle: 'miter',
+                  pointBorderColor: "rgba(75,192,192,1)",
+                  pointBackgroundColor: "#fff",
+                  pointBorderWidth: 1,
+                  pointHoverRadius: 5,
+                  pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                  pointHoverBorderColor: "rgba(220,220,220,1)",
+                  pointHoverBorderWidth: 2,
+                  pointRadius: 1,
+                  pointHitRadius: 10,
+                  data: this.systolicData,
+                  spanGaps: false,
+              }
+          ]
+      }
+
+  })
+
+  }
+  ionViewDidLoad()
+  {
+    
+    this.firedb.list("/users/"+this.fire.auth.currentUser.email.split('.').join('')+"/bloodpressure/time").valueChanges().subscribe(
+      _data =>
+      {
+        var i=_data.length;
+        this.chartLabels=_data;
+        // if(i>=7){
+        //   chartLabels=[_data[i-7],_data[i-6],_data[i-5],_data[i-4],_data[i-3],_data[i-2],_data[i-1]];
+        // }
+        // else if(i!=0)
+        // {
+        //   chartLabels=_data;
+        // }
+      }
+    )
+    this.firedb.list("/users/"+this.fire.auth.currentUser.email.split('.').join('')+"/bloodpressure/record/systolic").valueChanges().subscribe(
+      _data =>
+      {
+        if (this.systolicData) {
+          this.updateCharts(_data)
+        } else {
+          this.createCharts(_data)
+        }
+        // if(i>=7){
+        //   systolicData=[_data[i-7],_data[i-6],_data[i-5],_data[i-4],_data[i-3],_data[i-2],_data[i-1]];
+        // }
+        // else if(i!=0)
+        // {
+        //   systolicData=_data;
+        // }
+      }
+    )
+
+    this.firedb.list("/users/"+this.fire.auth.currentUser.email.split('.').join('')+"/bloodpressure/record/diastolic").valueChanges().subscribe(
+      _data =>
+      {
+        var i=_data.length;
+        this.diastolicData=_data        
+        // if(i>=7){
+        //   diastolicData=[_data[i-7],_data[i-6],_data[i-5],_data[i-4],_data[i-3],_data[i-2],_data[i-1]];
+        // }
+        // else if(i!=0)
+        // {
+        //   diastolicData=_data;
+        // }
+      }
+    )
+    
+}
 
   initializeDatabase()
   {

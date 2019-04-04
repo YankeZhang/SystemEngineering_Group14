@@ -3,7 +3,7 @@ import { NavController, Platform } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { BLE } from '@ionic-native/ble';
 import { DetailPage } from '../detail/detail';
-import { BluetoothLE } from '@ionic-native/bluetooth-le/ngx';
+import { ContactPage } from '../contact/contact';
 
 @Component({
   selector: 'page-bluetooth',
@@ -69,7 +69,7 @@ export class BluetoothPage {
 
   deviceSelected(device) {
     console.log(JSON.stringify(device) + ' selected');
-    this.navCtrl.push(DetailPage, {
+    this.navCtrl.push(ContactPage, {
       device: device
     });
   }
