@@ -1,28 +1,42 @@
 <ion-header>
-    <ion-navbar>
-      <ion-title>
-        Home
-      </ion-title>
-      <ion-buttons end>
-          <button ion-button color="danger" clear (click)="signOut()">
-            Log out
-          </button>
-        </ion-buttons>
-    </ion-navbar>
+  <ion-navbar>
+    <ion-title>
+      Home
+    </ion-title>
+    <ion-buttons end>
+        <button ion-button color="danger" clear (click)="signOut()">
+          Log out
+        </button>
+      </ion-buttons>
+  </ion-navbar>
+</ion-header>
 
-  </ion-header>
 <ion-content padding>
-    <ion-toolbar>
-        <ion-title>Welcome!</ion-title>
-      </ion-toolbar>
+  <ion-card>
+      <ion-card-content class="card-top">
+        <div id="title">Hampton Medical </div>
+      </ion-card-content>
+    </ion-card>
 
-      <button ion-fab id="last">Last measurement</button>
+    <ion-card id="last">
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-input id="systolic" [ngModel]="systolic"></ion-input>
+                    <ion-input id="diastolic" [ngModel]="diastolic"></ion-input>
+                </ion-col>
+                <ion-col>
+                    <ion-input id="glucose" [ngModel]="glucose"></ion-input>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <button ion-button clear full (click)="goToContactPage()">Contact Doctors</button>
+            </ion-row>
+        </ion-grid>
+      </ion-card>
 
-      <button ion-button [full]="isFull" [round]="isRound" id="contact">Contact Doctor</button>
 
-      <ion-fab right bottom>
-          <button ion-fab id="clock" color="light" (click)="goToReminderPage()">
-            <ion-icon name="alarm">
-        </ion-icon></button></ion-fab>
-             
+<ion-fab right bottom>
+  <button ion-fab color="light" (click)="goToReminderPage()"><ion-icon name="alarm"></ion-icon></button>
+</ion-fab>
 </ion-content>
