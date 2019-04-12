@@ -1,17 +1,38 @@
-page-home {
+.card-top {
+    background-color: aliceblue;
+    opacity: 0.6;
+}
 
-    #last{
-        margin: auto;
-        position: relative;
-        top: 50px;
-        width: 120px;
-        height: 120px;
-    }
+#title{
+    font-size: medium;
+    text-align: center;
+    position: relative;
+}
 
-    #contact{
-        position: relative;
-        bottom: -100px;
-    }
+#last
+{
+    background-color: aliceblue;
+    opacity: 0.6;
+    position: relative;
+}
 
-    
+#systolic{
+    text-align: center;
+    font-size: small;
+    color: rgb(0, 0, 0);
+    position: relative;
+}
+
+#diastolic{
+    text-align: center;
+    font-size: small;
+    color: rgb(0, 0, 0);
+    position: relative;
+}
+
+#glucose{
+    text-align: center;
+    font-size: smallss;
+    color: rgb(0, 0, 0);
+    position: relative;
 }
