@@ -58,50 +58,9 @@ export class AboutPage {
     this.currentUser=this.fire.auth.currentUser.displayName;
   }
   
-  updateCharts(data) {
-    this.systolicData = data;
-    this.valueLinesChart.data.datasets.forEach((dataset) => {
-      dataset.data = this.systolicData;
-    });
-    this.valueLinesChart.update();
-  }
 
-  createCharts(data) {
-    this.systolicData = data;
-    this.valueLinesChart = new Chart(this.lineCanvas.nativeElement, {
-
-      type: 'line',
-      data: {
-          labels: this.chartLabels,
-          datasets: [
-              {
-                  label: "My First dataset",
-                  fill: false,
-                  lineTension: 0.1,
-                  backgroundColor: "rgba(75,192,192,0.4)",
-                  borderColor: "rgba(75,192,192,1)",
-                  borderCapStyle: 'butt',
-                  borderDash: [],
-                  borderDashOffset: 0.0,
-                  borderJoinStyle: 'miter',
-                  pointBorderColor: "rgba(75,192,192,1)",
-                  pointBackgroundColor: "#fff",
-                  pointBorderWidth: 1,
-                  pointHoverRadius: 5,
-                  pointHoverBackgroundColor: "rgba(75,192,192,1)",
-                  pointHoverBorderColor: "rgba(220,220,220,1)",
-                  pointHoverBorderWidth: 2,
-                  pointRadius: 1,
-                  pointHitRadius: 10,
-                  data: this.systolicData,
-                  spanGaps: false,
-              }
-          ]
-      }
-
-  })
-
-  }
+  
+  
   ionViewDidLoad()
   {
     
@@ -109,31 +68,27 @@ export class AboutPage {
       _data =>
       {
         var i=_data.length;
-        this.chartLabels=_data;
-        // if(i>=7){
-        //   chartLabels=[_data[i-7],_data[i-6],_data[i-5],_data[i-4],_data[i-3],_data[i-2],_data[i-1]];
-        // }
-        // else if(i!=0)
-        // {
-        //   chartLabels=_data;
-        // }
+        
+        if(i>=7){
+          this.chartLabels=[_data[i-7],_data[i-6],_data[i-5],_data[i-4],_data[i-3],_data[i-2],_data[i-1]];
+        }
+        else if(i!=0)
+        {
+          this.chartLabels=_data;
+        }
       }
     )
     this.firedb.list("/users/"+this.fire.auth.currentUser.email.split('.').join('')+"/bloodpressure/record/systolic").valueChanges().subscribe(
       _data =>
       {
-        if (this.systolicData) {
-          this.updateCharts(_data)
-        } else {
-          this.createCharts(_data)
+        var i=_data.length;
+        if(i>=7){
+          this.systolicData=[_data[i-7],_data[i-6],_data[i-5],_data[i-4],_data[i-3],_data[i-2],_data[i-1]];
         }
-        // if(i>=7){
-        //   systolicData=[_data[i-7],_data[i-6],_data[i-5],_data[i-4],_data[i-3],_data[i-2],_data[i-1]];
-        // }
-        // else if(i!=0)
-        // {
-        //   systolicData=_data;
-        // }
+        else if(i!=0)
+        {
+          this.systolicData=_data;
+        }
       }
     )
 
@@ -141,14 +96,14 @@ export class AboutPage {
       _data =>
       {
         var i=_data.length;
-        this.diastolicData=_data        
-        // if(i>=7){
-        //   diastolicData=[_data[i-7],_data[i-6],_data[i-5],_data[i-4],_data[i-3],_data[i-2],_data[i-1]];
-        // }
-        // else if(i!=0)
-        // {
-        //   diastolicData=_data;
-        // }
+            
+        if(i>=7){
+          this.diastolicData=[_data[i-7],_data[i-6],_data[i-5],_data[i-4],_data[i-3],_data[i-2],_data[i-1]];
+        }
+        else if(i!=0)
+        {
+          this.diastolicData=_data;
+        }
       }
     )
     

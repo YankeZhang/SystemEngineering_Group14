@@ -11,7 +11,8 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { ReminderPage } from '../pages/reminder/reminder';
-import { DetailPage}  from '../pages/detail/detail'
+import { DetailPage}  from '../pages/detail/detail';
+import { ContactDetailsPage }  from '../pages/contact-details/contact-details'
 
 import { ChartsModule } from 'ng2-charts'
 
@@ -42,7 +43,6 @@ const firebase = {
     HomePage,
     TabsPage,
     DetailPage,
-
     ReminderPage
     
   ],

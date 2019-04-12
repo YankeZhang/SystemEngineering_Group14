@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angu
 import { TabsPage } from '../tabs/tabs';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 
+
 /**
  * Generated class for the ReminderPage page.
  *
@@ -27,39 +28,65 @@ export class ReminderPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDdLoad ReminderPage');
+    console.log('ionViewDidLoad ReminderPage');
   }
 
   goToHomePage() {
-   
-    this.presentToast();
+    this.test();
     this.setNotice();
-    this.navCtrl.pop();
+    this.navCtrl.push(TabsPage);
+    //this.presentToast();
   }
 
-  async presentToast() {
+  /*async presentToast() {
     const toast = await this.toastController.create({
       message: this.myDate,
       position: 'top',
       duration: 3000
     });
     toast.present();
-  }
+  }*/
 
-  timeSetting(){
-    
-  }
-
-  setNotice(){
+  test(){
     this.localNotifications.schedule({
       title: 'Measurements reminder',
       text: 'It\'s time to take mesurements!',
       actions: [
         { id: 'close', title: 'Close'}
       ],
-      trigger: {at: this.myDate}
+      trigger: {at: new Date(new Date().getTime())}
     });
-   
   }
- 
+
+  setNotice(){
+    if(this.alert=='ringtone'){
+      this.localNotifications.setDefaults({vibrate: false,
+        sound: 'file://sound.mp3'});
+    } else{
+      this.localNotifications.setDefaults({vibrate: true})
+    }
+
+    if(this.repeat=='daily'){
+      this.localNotifications.schedule({
+        title: 'Measurements reminder',
+        text: 'It\'s time to take mesurements!',
+        actions: [
+          { id: 'close', title: 'Close'}
+        ],
+        trigger: {at: this.myDate, 
+          every: {hour: parseInt(this.myDate.substring(0,2)), 
+            minute: parseInt(this.myDate.substring(3,5))}}
+      });
+    }else{
+      this.localNotifications.schedule({
+        title: 'Measurements reminder',
+        text: 'It\'s time to take mesurements!',
+        actions: [
+          { id: 'close', title: 'Close'}
+        ],
+        trigger: {at: this.myDate}
+      });
+    }
+    
+  }
 }

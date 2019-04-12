@@ -10,7 +10,7 @@ import { BLE } from '@ionic-native/ble';
 })
 export class DetailPage {
   
-  final;
+  
   glucose: String;
   peripheral: any = {};
   statusMessage: string;
@@ -18,7 +18,6 @@ export class DetailPage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams, 
               private ble: BLE,
-              private alertCtrl: AlertController,
               private toastCtrl: ToastController,
               private ngZone: NgZone
               ) {

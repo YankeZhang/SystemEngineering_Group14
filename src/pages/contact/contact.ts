@@ -1,10 +1,10 @@
 import { Component,NgZone } from '@angular/core';
-import { NavController,NavParams } from 'ionic-angular';
+import { NavController,NavParams,AlertController } from 'ionic-angular';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ToastController } from 'ionic-angular';
 import { BLE } from '@ionic-native/ble';
-
+import { ContactDetailsPage }  from '../contact-details/contact-details'
 
 @Component({
   selector: 'page-contact',
@@ -24,17 +24,19 @@ export class ContactPage {
   chartType:string = 'line';
   constructor( private ble: BLE,
     private toastCtrl: ToastController,
-    private ngZone: NgZone,public navCtrl: NavController, public firedb: AngularFireDatabase,public fire:AngularFireAuth, public navParams: NavParams) {
+    private ngZone: NgZone,public navCtrl: NavController, public firedb: AngularFireDatabase,public fire:AngularFireAuth, public navParams: NavParams, public alertCtrl:AlertController) {
     let device = navParams.get('device');
     this.initializeDatabase();
-
-    this.setStatus('Connecting to ' + device.name || device.id);
-    this.ble.autoConnect(device.id,this.onConnected.bind(this),this.onDeviceDisconnected.bind(this));
-    this.ble.connect(device.id).subscribe(
-      peripheral => this.onConnected(peripheral),
-      peripheral => this.onDeviceDisconnected(peripheral)
-    );
-    this.onConnected(this.peripheral);
+    if(device!=null)
+    {
+      this.setStatus('Connecting to ' + device.name || device.id);
+      this.ble.autoConnect(device.id,this.onConnected.bind(this),this.onDeviceDisconnected.bind(this));
+      this.ble.connect(device.id).subscribe(
+        peripheral => this.onConnected(peripheral),
+        peripheral => this.onDeviceDisconnected(peripheral)
+      );
+      this.onConnected(this.peripheral);
+    }
   }
   onConnected(peripheral)
   {
@@ -127,7 +129,16 @@ export class ContactPage {
         this.getCurrentTime();
         this.firedb.list("/users/"+this.fire.auth.currentUser.email.split('.').join('')+"/bloodglucose/record").push(Number(this.current));
         this.firedb.list("/users/"+this.fire.auth.currentUser.email.split('.').join('')+"/bloodglucose/time").push(this.currentTime);
+        if(this.current>=100){
+          const alert = this.alertCtrl.create({
+            title: 'Contact doctors',
+            subTitle: 'Your blood glucose measurement is out of the normal range, please measure it again or contact your doctor for help.',
+            buttons: [{text: 'OK'}, {text: 'Doctor Details', handler: () =>{this.navCtrl.push("ContactDetailsPage")}}]
+          });
+          alert.present();
+        }
       }
+      
   }
 
   getCurrentTime()
