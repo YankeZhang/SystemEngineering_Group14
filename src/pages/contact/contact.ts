@@ -115,7 +115,7 @@ export class ContactPage {
         }
         else if(i!=0)
         {
-          this.chartLabels=_data;
+          this.chartData=_data;
         }
       }
     )
