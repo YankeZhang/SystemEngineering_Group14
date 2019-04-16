@@ -6,7 +6,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="color" padding>
   <ion-item>
     <ion-label floating>Systolic</ion-label>
     <ion-input [(ngModel)]="systolic"></ion-input>
@@ -16,10 +16,12 @@
       <ion-input [(ngModel)]="diastolic"></ion-input>
     </ion-item>
 
-  <button ion-button block (click)="uploadpressure()">Upload</button>
-  <ion-card>
-      <h2>Systolic</h2>
-  <div style="display:block;">
+  <p></p>
+  <button ion-button padding block (click)="uploadpressure()">Upload</button>
+
+  <h4 class="title">Systolic</h4>
+  <ion-card padding class="card-top">
+    
     <canvas baseChart width="200" height="100"
     [data]="systolicData"
     [labels]='chartLabels'
@@ -29,21 +31,19 @@
     [options]='chartOptions'
     >
   </canvas>
-    </div>
   </ion-card>
 
-  <ion-card>
-    <h2>Diastolic</h2>
-      <div style="display:block;">
-        <canvas baseChart width="300" height="100"
-        [data]="diastolicData"
-        [labels]='chartLabels'
-        [legend]='lineChartLegend'
-        [chartType]='chartType'
-        [colors]="lineChartColors"
-        [options]='chartOptions'
-        >
+  <h4 class="title">Diastolic</h4>
+  <ion-card padding class="card-top">
+
+      <canvas baseChart width="300" height="100"
+      [data]="diastolicData"
+      [labels]='chartLabels'
+      [legend]='lineChartLegend'
+      [chartType]='chartType'
+      [colors]="lineChartColors"
+      [options]='chartOptions'
+      >
       </canvas>
-        </div>
       </ion-card>
 </ion-content>
