@@ -6,23 +6,32 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="color" padding>
     
   <ion-item>
-      <ion-label floating>Bloodglucose</ion-label>
+      <ion-label floating>Blood Glucose</ion-label>
       <ion-input [(ngModel)]="current"></ion-input>
     </ion-item>
     <ion-item> 
-        <ion-label>{{ glucose }}</ion-label>
-        
-      </ion-item>
-    <button ion-button block (click)="uploadglucose()">Upload</button>
-    <div style="display:block;">
+        <ion-label>{{ glucose }}</ion-label>   
+    </ion-item>
+
+    <p></p>
+    <button padding ion-button block (click)="uploadglucose()">Upload</button>
+
+  
+    <h4 class="cardtitle">Past readings</h4>
+    <p></p>
+    <ion-card padding class="card-top">
+      <!-- <ion-item-divider class="cardtitle">Past readings</ion-item-divider> -->
+      
+        <div class="canvas">
         <canvas baseChart
         [data]='chartData'
         [labels]='chartLabels'
         [chartType]='chartType'
         >
-        </canvas>
-      </div>
+        </canvas> </div>
+      </ion-card>
+     
 </ion-content>
