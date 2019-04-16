@@ -3,6 +3,7 @@ import { NavController, ToastController} from 'ionic-angular';
 import { App } from 'ionic-angular';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { ReminderPage } from "../reminder/reminder";
 import { database } from 'firebase';
 import { ViewChild } from '@angular/core';
 
@@ -33,7 +34,7 @@ export class HomePage {
   }
 
   goToReminderPage() {
-    this.navCtrl.push('ReminderPage');
+    this.navCtrl.push(ReminderPage);
   } 
 
   goToContactPage() {

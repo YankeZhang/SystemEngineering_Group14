@@ -8,9 +8,6 @@ import { ReminderPage } from './reminder';
   ],
   imports: [
     IonicPageModule.forChild(ReminderPage),
-  ],
-  entryComponents: [
-    ReminderPage
   ]
 })
 export class ReminderPageModule {}

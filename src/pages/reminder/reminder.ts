@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 import { LocalNotifications } from '@ionic-native/local-notifications';
-
+import { trigger } from '@angular/core/src/animation/dsl';
 
 /**
  * Generated class for the ReminderPage page.

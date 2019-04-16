@@ -2,10 +2,11 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler, Config } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
 
+
+import { LoginPage } from '../pages/login/login';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
@@ -13,13 +14,15 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { ReminderPage } from '../pages/reminder/reminder';
 import { DetailPage}  from '../pages/detail/detail';
 import { ContactDetailsPage }  from '../pages/contact-details/contact-details'
+import { BluetoothPage } from '../pages/bluetooth/bluetooth';
+
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { ReminderPageModule } from '../pages/reminder/reminder.module';
 
 import { ChartsModule } from 'ng2-charts'
-
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { BluetoothPage } from '../pages/bluetooth/bluetooth';
-import { LoginPage } from '../pages/login/login';
 import { BLE } from '@ionic-native/ble';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { BluetoothLE } from '@ionic-native/bluetooth-le/ngx';
@@ -43,7 +46,8 @@ const firebase = {
     HomePage,
     TabsPage,
     DetailPage,
-    ReminderPage
+    ReminderPage,
+    ContactDetailsPage
     
   ],
   imports: [
@@ -52,7 +56,9 @@ const firebase = {
     AngularFireModule.initializeApp(firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    ChartsModule
+    ChartsModule,
+    //LocalNotifications
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -64,6 +70,7 @@ const firebase = {
     ContactPage,
     HomePage,
     DetailPage,
+    ContactDetailsPage,
     TabsPage
   ],
   providers: [

@@ -133,7 +133,7 @@ export class ContactPage {
           const alert = this.alertCtrl.create({
             title: 'Contact doctors',
             subTitle: 'Your blood glucose measurement is out of the normal range, please measure it again or contact your doctor for help.',
-            buttons: [{text: 'OK'}, {text: 'Doctor Details', handler: () =>{this.navCtrl.push("ContactDetailsPage")}}]
+            buttons: [{text: 'OK'}, {text: 'Doctor Details', handler: () =>{this.navCtrl.push(ContactDetailsPage)}}]
           });
           alert.present();
         }
