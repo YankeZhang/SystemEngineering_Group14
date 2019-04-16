@@ -1,8 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Home
-    </ion-title>
+    <ion-title padding>Blood Readings</ion-title>
     <ion-buttons end>
         <button ion-button color="danger" clear (click)="signOut()">
           Log out
@@ -11,29 +9,41 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-card>
-      <ion-card-content class="card-top">
-        <div id="title">Hampton Medical </div>
-      </ion-card-content>
-    </ion-card>
+<ion-content padding class="color">
 
-    <ion-card id="last">
-        <ion-grid>
-            <ion-row>
-                <ion-col>
-                    <ion-input id="systolic" [ngModel]="systolic"></ion-input>
-                    <ion-input id="diastolic" [ngModel]="diastolic"></ion-input>
-                </ion-col>
-                <ion-col>
-                    <ion-input id="glucose" [ngModel]="glucose"></ion-input>
-                </ion-col>
-            </ion-row>
-            <ion-row>
-                <button ion-button clear full (click)="goToContactPage()">Contact Doctors</button>
-            </ion-row>
-        </ion-grid>
+    <ion-card>
+        <ion-card-content class="card-top">
+          <img alt="pressure" class="center2" src="assets/imgs/pressure2.png" >
+          <ion-row>
+        <ion-col>
+          <p>Systolic: </p>
+          <ion-input id="values" [ngModel]="systolic"></ion-input>
+        </ion-col>
+        <ion-col>
+          <p>Diastolic: </p>
+          <ion-input id="values" [ngModel]="diastolic"></ion-input>
+        </ion-col>    
+      </ion-row> 
+      </ion-card-content>
       </ion-card>
+
+      <ion-card>
+          <ion-card-content class="card-top">
+            <img alt="glucose" class="center2" src="assets/imgs/glucose2.png" >
+            <ion-row>
+          <ion-col>
+            <p>Glucose: </p>
+          </ion-col>
+          <ion-col>
+            <ion-input id="values" [ngModel]="glucose"></ion-input>
+          </ion-col>    
+        </ion-row> 
+        </ion-card-content>
+        </ion-card>
+
+      <ion-row padding>
+          <button ion-button block (click)="goToContactPage()">Doctor Contacts</button>
+      </ion-row>
 
 
 <ion-fab right bottom>

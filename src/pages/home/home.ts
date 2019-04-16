@@ -45,9 +45,9 @@ export class HomePage {
       _data =>
       {
         if(_data.length>0){
-          this.systolic="Systolic:\n"+_data[_data.length-1].toString();
+          this.systolic="" +_data[_data.length-1].toString();
         }else{
-          this.systolic="Systolic:\n"+" no records";
+          this.systolic="" + " Nil";
         }
       }
     );
@@ -56,9 +56,9 @@ export class HomePage {
       _data =>
       {
         if(_data.length>0){
-          this.diastolic="Diastolic:\n"+_data[_data.length-1].toString();
+          this.diastolic=""+_data[_data.length-1].toString();
         }else{
-          this.diastolic="Diastolic:\n"+" no records";
+          this.diastolic="" + " Nil";
         }
       }
     );
@@ -67,9 +67,9 @@ export class HomePage {
       _data =>
       {
         if(_data.length>0){
-          this.glucose="Glucose:\n"+_data[_data.length-1].toString();
+          this.glucose=""+_data[_data.length-1].toString();
         }else{
-          this.glucose="Glucose:\n"+" no records";
+          this.glucose=""+ " Nil";
         }
       }
     );
