@@ -1,4 +1,3 @@
-
 <!--
   Generated template for the ReminderPage page.
 
@@ -8,13 +7,10 @@
 <ion-header>
 
   <ion-navbar>
-      <ion-title>
-          Reminder
+      <ion-title padding >
+          Add Reminder
         </ion-title>
-  <ion-buttons end>
-      <button ion-button color="dark" clear (click)="goToHomePage()">
-        Done
-        </button></ion-buttons>
+  
     
   </ion-navbar>
 
@@ -23,13 +19,14 @@
 
 <ion-content padding>
     <ion-item-group>
-
-        <ion-item>
-            <ion-label>Date</ion-label>
+        <ion-list>
+        <ion-item color="light">
+            <ion-label color="primary">Time</ion-label>
             <ion-datetime displayFormat="HH:mm" [(ngModel)]="myDate"></ion-datetime>
           </ion-item>
+        </ion-list>
 
-        <ion-item-divider color="light">Repeat</ion-item-divider>
+          <ion-item-divider color="light">Repeat</ion-item-divider>
         <ion-list radio-group [(ngModel)]="repeat">
               <ion-item>
                 <ion-label>Daily</ion-label>
@@ -41,6 +38,7 @@
                 <ion-radio value="once" checked="true"></ion-radio>
               </ion-item>
             </ion-list>
+            
 
         <ion-item-divider color="light">Alert</ion-item-divider>
         <ion-list radio-group [(ngModel)]="alert">
@@ -54,4 +52,10 @@
               </ion-item>
             </ion-list>
   </ion-item-group>
+
+  <ion-buttons end>
+      <button ion-button color="primary" clear (click)="goToHomePage()">
+        Save
+        </button></ion-buttons>
+
 </ion-content>
