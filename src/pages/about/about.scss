@@ -1,15 +1,22 @@
 .ios, .md {
 
-    page-about {
 
-        .scroll-content {
-            background-color: map-get($colors, light);
-        }
+.color{
+    background-color: linear-gradient(to bottom,  #f8f1f5 0%, #cde7f0 100%);
+}
+.card-top {
+    background-color: rgb(255, 255, 255);
+    font-size:5px;
+}
 
-        ion-card-header {
-            font-weight: bold;
-        }
+.title{ 
+    font-size:18px;
+    text-align: center;
+}
 
-    }
+#button{
+    margin-left: auto;
+    margin-right: auto;
+}
 
 }
