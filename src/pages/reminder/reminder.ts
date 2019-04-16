@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
-import { TabsPage } from '../tabs/tabs';
+import { IonicPage, NavController, NavParams, ToastController, DateTime } from 'ionic-angular';
+import { HomePage } from '../home/home';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { trigger } from '@angular/core/src/animation/dsl';
 
@@ -33,8 +33,8 @@ export class ReminderPage {
 
   goToHomePage() {
     this.test();
-    this.setNotice();
-    this.navCtrl.push(TabsPage);
+    //this.setNotice();
+    this.navCtrl.pop();
     //this.presentToast();
   }
 
