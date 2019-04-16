@@ -16,11 +16,11 @@
           <img alt="pressure" class="center2" src="assets/imgs/pressure2.png" >
           <ion-row>
         <ion-col>
-          <p>Systolic: </p>
-          <ion-input id="values" [ngModel]="systolic"></ion-input>
+          <p id="right">Systolic</p>
+          <ion-input text-right id="values" [ngModel]="systolic"></ion-input>
         </ion-col>
         <ion-col>
-          <p>Diastolic: </p>
+          <p>Diastolic</p>
           <ion-input id="values" [ngModel]="diastolic"></ion-input>
         </ion-col>    
       </ion-row> 
@@ -30,14 +30,11 @@
       <ion-card>
           <ion-card-content class="card-top">
             <img alt="glucose" class="center2" src="assets/imgs/glucose2.png" >
-            <ion-row>
-          <ion-col>
-            <p>Glucose: </p>
-          </ion-col>
-          <ion-col>
-            <ion-input id="values" [ngModel]="glucose"></ion-input>
-          </ion-col>    
-        </ion-row> 
+            <div id="txt">
+            <p>Glucose mmol/L</p>
+
+            <ion-input text-center id="values" [ngModel]="glucose"></ion-input>
+          </div>
         </ion-card-content>
         </ion-card>
 
