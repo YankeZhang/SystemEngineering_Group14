@@ -1,5 +1,5 @@
 import { Component,ViewChild } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 import { Chart } from 'chart.js';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -53,7 +53,7 @@ export class AboutPage {
     }
   }
 
-  constructor(public navCtrl: NavController, public firedb: AngularFireDatabase,public fire: AngularFireAuth) {
+  constructor(public navCtrl: NavController, public firedb: AngularFireDatabase,public fire: AngularFireAuth, public alertCtrl:AlertController) {
     //this.initializeDatabase();
     this.currentUser=this.fire.auth.currentUser.displayName;
   }
@@ -164,6 +164,14 @@ export class AboutPage {
         this.firedb.list("/users/"+this.fire.auth.currentUser.email.split('.').join('')+"/bloodpressure/record/systolic").push(Number(this.systolic));
         this.firedb.list("/users/"+this.fire.auth.currentUser.email.split('.').join('')+"/bloodpressure/record/diastolic").push(Number(this.diastolic));
         this.firedb.list("/users/"+this.fire.auth.currentUser.email.split('.').join('')+"/bloodpressure/time").push(this.currentTime);
+        if(this.systolic>=160||this.diastolic>=100){
+          const alert = this.alertCtrl.create({
+            title: 'Contact doctors',
+            subTitle: 'Your blood pressure measurement is out of the normal range, please measure it again or contact your doctor for help.',
+            buttons: [{text: 'OK'}, {text: 'Doctor Details', handler: () =>{this.navCtrl.push("ContactDetailsPage")}}]
+          });
+          alert.present();
+        }
       }
     console.log(this.systolicData);
   }
