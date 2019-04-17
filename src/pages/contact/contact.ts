@@ -17,7 +17,7 @@ export class ContactPage {
   statusMessage: string;
   recordTime: string;
   device = null;
-  current: number=null;
+  current:number=null;
   currentTime: string;
   chartLabels=[];
   chartData=[];
@@ -61,7 +61,8 @@ export class ContactPage {
   onChange(buffer:ArrayBuffer) {
     let intData=new Uint8Array(buffer);
     this.ngZone.run(() => {
-      this.glucose=(intData[12]/18).toFixed(1).toString()+"mmol/l";
+      this.glucose=(intData[12]/18).toFixed(1)+"mmol/l";
+      this.current=Number((intData[12]/18).toFixed(1))
       this.recordTime=intData[5].toString()+"/"+intData[6].toString()+" "+intData[7].toString()+":"+intData[8].toString();
     });
   }

@@ -32,8 +32,8 @@ export class ReminderPage {
   }
 
   goToHomePage() {
-    this.test();
-    //this.setNotice();
+    //this.test();
+    this.setNotice();
     this.navCtrl.pop();
     //this.presentToast();
   }
