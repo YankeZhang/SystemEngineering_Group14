@@ -46,8 +46,7 @@ const firebase = {
     HomePage,
     TabsPage,
     DetailPage,
-    ReminderPage,
-    ContactDetailsPage
+    ReminderPage
     
   ],
   imports: [
@@ -70,7 +69,6 @@ const firebase = {
     ContactPage,
     HomePage,
     DetailPage,
-    ContactDetailsPage,
     TabsPage
   ],
   providers: [
