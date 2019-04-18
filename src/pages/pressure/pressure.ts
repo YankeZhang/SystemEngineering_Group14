@@ -6,13 +6,12 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Color } from 'ng2-charts';
 
 @Component({
-  selector: 'page-about',
-  templateUrl: 'about.html'
+  selector: 'page-pressure',
+  templateUrl: 'pressure.html'
 })
-export class AboutPage {
+export class PressurePage {
 
   @ViewChild('lineCanvas') lineCanvas;
-  valueLinesChart: any;
   currentUser;
   systolic:number=null;
   diastolic:number=null;
@@ -29,7 +28,7 @@ export class AboutPage {
   
 
   public lineChartColors: Color[] = [
-    { // red
+    { 
       backgroundColor: 'rgba(255,0,0,0.3)',
       borderColor: 'red',
       pointBackgroundColor: 'rgba(148,159,177,1)',
@@ -39,9 +38,7 @@ export class AboutPage {
     }
 
   ];
-
-  
-  chartOptions: {
+  public chartOptions: {
     scales: {
       yAxes: [{
           ticks: {
@@ -78,6 +75,7 @@ export class AboutPage {
         }
       }
     )
+
     this.firedb.list("/users/"+this.fire.auth.currentUser.email.split('.').join('')+"/bloodpressure/record/systolic").valueChanges().subscribe(
       _data =>
       {

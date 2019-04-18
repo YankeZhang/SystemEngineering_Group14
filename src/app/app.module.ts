@@ -1,14 +1,14 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler, Config } from 'ionic-angular';
-import { MyApp } from './app.component';
+import { Hampton} from './app.component';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 
 import { LoginPage } from '../pages/login/login';
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
+import { PressurePage } from '../pages/pressure/pressure';
+import { GlucosePage } from '../pages/glucose/glucose';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { ReminderPage } from '../pages/reminder/reminder';
@@ -28,21 +28,21 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
 import { BluetoothLE } from '@ionic-native/bluetooth-le/ngx';
 
 const firebase = {
-    apiKey: "AIzaSyAfe-IA_oEU-dxBj1nv2cx1Rvokso3wWak",
-    authDomain: "ionicproject-8a63d.firebaseapp.com",
-    databaseURL: "https://ionicproject-8a63d.firebaseio.com",
-    projectId: "ionicproject-8a63d",
-    storageBucket: "ionicproject-8a63d.appspot.com",
-    messagingSenderId: "1001437066757"
+  apiKey: "AIzaSyA9Nk5GHK0euIxAYKPY23sYHVCIItM6QY8",
+  authDomain: "ionicproject-f7802.firebaseapp.com",
+  databaseURL: "https://ionicproject-f7802.firebaseio.com",
+  projectId: "ionicproject-f7802",
+  storageBucket: "ionicproject-f7802.appspot.com",
+  messagingSenderId: "979453945585"
 }
 
 @NgModule({
   declarations: [
-    MyApp,
+    Hampton,
     LoginPage,
     BluetoothPage,
-    AboutPage,
-    ContactPage,
+    PressurePage,
+    GlucosePage,
     HomePage,
     TabsPage,
     DetailPage,
@@ -51,7 +51,7 @@ const firebase = {
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(Hampton),
     AngularFireModule.initializeApp(firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
@@ -61,12 +61,12 @@ const firebase = {
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
+    Hampton,
     LoginPage,
     ReminderPage,
     BluetoothPage,
-    AboutPage,
-    ContactPage,
+    PressurePage,
+    GlucosePage,
     HomePage,
     DetailPage,
     TabsPage

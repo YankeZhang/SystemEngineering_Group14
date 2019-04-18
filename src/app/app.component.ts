@@ -9,7 +9,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 @Component({
   templateUrl: 'app.html'
 })
-export class MyApp {
+export class Hampton {
   rootPage:any = LoginPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {

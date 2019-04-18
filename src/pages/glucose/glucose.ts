@@ -6,11 +6,11 @@ import { ToastController } from 'ionic-angular';
 import { BLE } from '@ionic-native/ble';
 
 @Component({
-  selector: 'page-contact',
-  templateUrl: 'contact.html'
+  selector: 'page-glucose',
+  templateUrl: 'glucose.html'
 })
 
-export class ContactPage {
+export class GlucosePage {
   glucose: String='';
   peripheral: any = {};
   statusMessage: string;
@@ -21,6 +21,7 @@ export class ContactPage {
   chartLabels=[];
   chartData=[];
   chartType:string = 'line';
+  
   constructor( private ble: BLE,
     private toastCtrl: ToastController,
     private ngZone: NgZone,public navCtrl: NavController, public firedb: AngularFireDatabase,public fire:AngularFireAuth, public navParams: NavParams, public alertCtrl:AlertController) {
@@ -37,6 +38,7 @@ export class ContactPage {
       this.onConnected(this.peripheral);
     }
   }
+
   onConnected(peripheral)
   {
     this.peripheral=peripheral;
