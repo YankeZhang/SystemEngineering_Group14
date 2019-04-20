@@ -23,8 +23,13 @@ export class GlucosePage {
   chartType:string = 'line';
   
   constructor( private ble: BLE,
-    private toastCtrl: ToastController,
-    private ngZone: NgZone,public navCtrl: NavController, public firedb: AngularFireDatabase,public fire:AngularFireAuth, public navParams: NavParams, public alertCtrl:AlertController) {
+            private toastCtrl: ToastController,
+    private ngZone: NgZone,
+    public navCtrl: NavController, 
+    public firedb: AngularFireDatabase,
+    public fire:AngularFireAuth, 
+    public navParams: NavParams, 
+    public alertCtrl:AlertController) {
     let device = navParams.get('device');
     this.initializeDatabase();
     if(device!=null)

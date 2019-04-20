@@ -13,20 +13,17 @@ export class PressurePage {
 
   @ViewChild('lineCanvas') lineCanvas;
   currentUser;
+  currentTime: string;
+
   systolic:number=null;
   diastolic:number=null;
-  currentTime: string;
+
   chartLabels=[];
   systolicData=[];
   diastolicData=[];
+  
   public lineChartLegend = false;
   chartType:string = 'line';
-
-  public lineChartData:Array<any> =[
-    {data:this.systolicData, label: 'Systolic'}
-  ];
-  
-
   public lineChartColors: Color[] = [
     { 
       backgroundColor: 'rgba(255,0,0,0.3)',
@@ -50,62 +47,13 @@ export class PressurePage {
     }
   }
 
-  constructor(public navCtrl: NavController, public firedb: AngularFireDatabase,public fire: AngularFireAuth, public alertCtrl:AlertController) {
-    //this.initializeDatabase();
+  constructor(public navCtrl: NavController, 
+              public firedb: AngularFireDatabase,
+              public fire: AngularFireAuth, 
+              public alertCtrl:AlertController) {
+    this.initializeDatabase();
     this.currentUser=this.fire.auth.currentUser.displayName;
   }
-  
-
-  
-  
-  ionViewDidLoad()
-  {
-    
-    this.firedb.list("/users/"+this.fire.auth.currentUser.email.split('.').join('')+"/bloodpressure/time").valueChanges().subscribe(
-      _data =>
-      {
-        var i=_data.length;
-        
-        if(i>=7){
-          this.chartLabels=[_data[i-7],_data[i-6],_data[i-5],_data[i-4],_data[i-3],_data[i-2],_data[i-1]];
-        }
-        else if(i!=0)
-        {
-          this.chartLabels=_data;
-        }
-      }
-    )
-
-    this.firedb.list("/users/"+this.fire.auth.currentUser.email.split('.').join('')+"/bloodpressure/record/systolic").valueChanges().subscribe(
-      _data =>
-      {
-        var i=_data.length;
-        if(i>=7){
-          this.systolicData=[_data[i-7],_data[i-6],_data[i-5],_data[i-4],_data[i-3],_data[i-2],_data[i-1]];
-        }
-        else if(i!=0)
-        {
-          this.systolicData=_data;
-        }
-      }
-    )
-
-    this.firedb.list("/users/"+this.fire.auth.currentUser.email.split('.').join('')+"/bloodpressure/record/diastolic").valueChanges().subscribe(
-      _data =>
-      {
-        var i=_data.length;
-            
-        if(i>=7){
-          this.diastolicData=[_data[i-7],_data[i-6],_data[i-5],_data[i-4],_data[i-3],_data[i-2],_data[i-1]];
-        }
-        else if(i!=0)
-        {
-          this.diastolicData=_data;
-        }
-      }
-    )
-    
-}
 
   initializeDatabase()
   {
