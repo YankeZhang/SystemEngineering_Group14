@@ -17,11 +17,15 @@
           <ion-row>
         <ion-col>
           <p id="right">Systolic mmHg</p>
-          <ion-input text-right id="values" [ngModel]="systolic"></ion-input>
+          <ion-item>
+            <ion-label id="values">{{ systolic }}</ion-label>
+          </ion-item>
+          
+          
         </ion-col>
         <ion-col>
-          <p>Diastolic mmHg</p>
-          <ion-input id="values" [ngModel]="diastolic"></ion-input>
+          <p id="left">Diastolic mmHg</p>
+          <ion-label id="values">{{ diastolic }}</ion-label>
         </ion-col>    
       </ion-row> 
       </ion-card-content>
@@ -33,7 +37,10 @@
             <div id="txt">
             <p>Glucose mmol/L</p>
 
-            <ion-input text-center id="values" [ngModel]="glucose"></ion-input>
+            <ion-item> 
+              <ion-label id="values">{{ glucose }}</ion-label>   
+          </ion-item>
+      
           </div>
         </ion-card-content>
         </ion-card>

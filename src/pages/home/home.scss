@@ -6,9 +6,8 @@
     background: linear-gradient(to bottom,  #fdfdfd 0%, #b6eefc 100%);
 }
 
-.left {
-    margin-top: 12px;
-    position: left;
+#left {
+    text-align: center;
 }
 
 .center2 {
@@ -32,6 +31,7 @@
     margin-top:0px;
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
 }
 
 #txt{
@@ -39,5 +39,5 @@
 }
 
 #right{
-    text-align: right;
+    text-align: center;
 }
